@@ -7,6 +7,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getFileMetaData: (url) => ipcRenderer.invoke('file:getFileMetaData', url),
   getFolderPath: () => ipcRenderer.invoke('folder:getFolderPath'),
   handleCreateAlbum: (albumName, formattedFiles) => ipcRenderer.invoke('file:createAlbum', albumName, formattedFiles),
+  handleDeletePlayList: (playlistName) => ipcRenderer.invoke('file:deletePlayList', playlistName),
   closeWindow: () => ipcRenderer.invoke('close'),
   minimizeWindow: () => ipcRenderer.invoke('minimize'),
   maximizeWindow: () => ipcRenderer.invoke('maximize')

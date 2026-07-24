@@ -9,6 +9,8 @@ export const windowObj = window as typeof window & {
         maximizeWindow: VoidFunction,
         getFolderPath: () => string,
         getAllPlayList: () => IPlayListDetail[],
-        getAllFiles: (arg0: string) => IFileType[]
+        getAllFiles: (arg0: string) => IFileType[],
+        handleCreateAlbum: (albumName: string, formattedFiles: { name: string, src: string }[]) => Promise<string>,
+        handleDeletePlayList: (playlistName: string) => Promise<string>
     }
 };

@@ -21,6 +21,17 @@ const handleGetAllPlayList =  async () => {
     return playLists
 }
 
+const handleDeletePlayList = async (event, playlistName) => {
+    const containerPath = path.join(__dirname, '..', 'data', 'play-list');
+    const targetFolder = path.join(containerPath, playlistName);
+    if (fs.existsSync(targetFolder)) {
+        await fs.promises.rm(targetFolder, { recursive: true, force: true });
+        return 'playlist deleted successfully';
+    }
+    throw new Error('Playlist does not exist');
+}
+
 module.exports = {
-    handleGetAllPlayList
+    handleGetAllPlayList,
+    handleDeletePlayList
 }

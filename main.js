@@ -4,7 +4,7 @@ const path = require('node:path')
 const { getFiles, getAllFiles, handleGetFileMetaData } = require('./ipchandler/render.event.handler')
 const { hadleGetFolderPath } = require('./ipchandler/getFolderPath')
 const { handleCreateAlbum } = require('./ipchandler/createAlbum')
-const { handleGetAllPlayList } = require('./ipchandler/getPlayList')
+const { handleGetAllPlayList, handleDeletePlayList } = require('./ipchandler/getPlayList')
 
 let win
 const createWindow = () => {
@@ -29,6 +29,7 @@ require('electron-reload')(__dirname, {
 })
 app.whenReady().then(async () => {
   ipcMain.handle('file:getAllPlayList', handleGetAllPlayList)
+  ipcMain.handle('file:deletePlayList', handleDeletePlayList)
   ipcMain.handle('file:getFiles', getFiles)
   ipcMain.handle('file:getAllFiles', getAllFiles)
   ipcMain.handle('file:createAlbum', handleCreateAlbum)
