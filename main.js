@@ -1,13 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
-const enableDrag = require('electron-drag');
+
 const path = require('node:path')
 const { getFiles, getAllFiles, handleGetFileMetaData } = require('./ipchandler/render.event.handler')
 const { hadleGetFolderPath } = require('./ipchandler/getFolderPath')
 const { handleCreateAlbum } = require('./ipchandler/createAlbum')
 const { handleGetAllPlayList, handleDeletePlayList } = require('./ipchandler/getPlayList')
 
-const drag = require('electron-drag');
-console.log(drag);
 let win
 const createWindow = () => {
   win = new BrowserWindow({
@@ -18,7 +16,7 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
       hardwareAcceleration: true
     },
-    frame: process.platform === 'darwin' ? true : false,
+    frame: false,
     ...(process.platform === 'darwin' ? { titleBarStyle: 'hidden' } : {})
   })
 
