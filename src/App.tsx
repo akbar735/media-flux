@@ -9,6 +9,7 @@ import Settings from "./pages/settings/Settings";
 import { useAppSelector } from "./hooks";
 import PlayLists from "./pages/play_lists/PlayLists";
 import { applyAppTheme, getStoredAppTheme } from "./helper";
+
 App.displayName = 'App';
 export default function App(){
     const state = useAppSelector(state => state)

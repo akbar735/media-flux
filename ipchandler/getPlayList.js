@@ -1,9 +1,13 @@
 const path = require('node:path')
 const fs = require('fs')
+const { app } = require('electron');
 
-
-const handleGetAllPlayList =  async () => {
-    const containerPath = path.join(__dirname,'..','data', 'play-list');
+const handleGetAllPlayList = async () => {
+    const containerPath = path.join(
+        app.getPath('userData'),
+        'data',
+        'play-list',
+    );
 
     if (!fs.existsSync(containerPath)) {
         await fs.promises.mkdir(containerPath, { recursive: true });
@@ -11,22 +15,27 @@ const handleGetAllPlayList =  async () => {
 
     const mediaFiles = await fs.promises.readdir(containerPath);
     const playLists = []
-    for(const index in mediaFiles){
+    for (const index in mediaFiles) {
         const fullPath = `${containerPath}/${mediaFiles[index]}`;
         const stats = await fs.promises.stat(fullPath);
-        if(stats.isDirectory()){
+        if (stats.isDirectory()) {
             playLists.push({
                 path: fullPath,
                 name: mediaFiles[index]
             })
-           
+
         }
     }
     return playLists
 }
 
 const handleDeletePlayList = async (event, playlistName) => {
-    const containerPath = path.join(__dirname, '..', 'data', 'play-list');
+    const containerPath = path.join(
+        app.getPath('userData'),
+        'data',
+        'play-list'
+    );
+
     const targetFolder = path.join(containerPath, playlistName);
     if (fs.existsSync(targetFolder)) {
         await fs.promises.rm(targetFolder, { recursive: true, force: true });

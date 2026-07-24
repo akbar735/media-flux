@@ -9,10 +9,17 @@
     "watch": "",
     "start": "concurrently \"npx tailwindcss -i ./src/App.css -o ./src/dist/App.css --watch\" \"webpack --config webpack/webpack.config.js --env env=dev --watch\" \"electron .\"",
     "build": "webpack --config webpack/webpack.config.js --env env=prod",
-    "launch": "electron ."
+    "launch": "electron .",
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Md Ali Akbar",
+    "email": "md.aliakbar.dev@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.9",
@@ -28,6 +35,7 @@
     "concurrently": "^9.2.1",
     "css-loader": "^6.10.0",
     "electron": "^28.2.2",
+    "electron-builder": "^26.15.3",
     "electron-reload": "^2.0.0-alpha.1",
     "html-webpack-plugin": "^5.6.0",
     "postcss": "^8.4.35",
@@ -58,5 +66,47 @@
     "react-router-dom": "^6.22.2",
     "styled-components": "^6.1.8",
     "uuid": "^9.0.1"
+  },
+  "build": {
+    "appId": "com.akbar.mediaflux",
+    "productName": "Media Flux",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "build/**/*",
+      "package.json",
+      "node_modules/**/*",
+      "ipchandler/**/*",
+      "helper.js",
+      "preload.js"
+    ],
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Media Flux"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "build/icons"
+    }
   }
 }

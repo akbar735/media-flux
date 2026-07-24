@@ -183,7 +183,7 @@ export default function PlayLists(){
                         </IconButton>
                     )}
                     {selectedPlayList && <FilePickerButton 
-                        label="Open Media" 
+                        label="Add Media" 
                         onFilesSlected={handleFileSelection} 
                         multiple
                         icon = {MdAddCircleOutline}        

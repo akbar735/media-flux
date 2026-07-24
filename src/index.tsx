@@ -7,7 +7,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { store } from './store';
-
+import './App.css'
 const root = createRoot(document.getElementById('app') as Element);
 
 root.render(

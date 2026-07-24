@@ -1,11 +1,13 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
-const { enableDrag } = require('electron-drag');
+const enableDrag = require('electron-drag');
 const path = require('node:path')
 const { getFiles, getAllFiles, handleGetFileMetaData } = require('./ipchandler/render.event.handler')
 const { hadleGetFolderPath } = require('./ipchandler/getFolderPath')
 const { handleCreateAlbum } = require('./ipchandler/createAlbum')
 const { handleGetAllPlayList, handleDeletePlayList } = require('./ipchandler/getPlayList')
 
+const drag = require('electron-drag');
+console.log(drag);
 let win
 const createWindow = () => {
   win = new BrowserWindow({
@@ -28,19 +30,22 @@ const createWindow = () => {
     win.webContents.send('window:fullscreen-change', false)
   })
 
-  win.loadFile('build/index.html')
+  win.loadFile(path.join(__dirname, 'build', 'index.html'))
   win.addListener
- // enableDrag(win);
+  //enableDrag(win);
   //win.webContents.openDevTools()
 }
 
-require('electron-reload')(__dirname, {
+if (!app.isPackaged) {
+  require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
     ignored: [
       /node_modules|[/\\]\./,
       /([/\\]|^)data([/\\]|$)/
     ]
-})
+  })
+}
+
 app.whenReady().then(async () => {
   ipcMain.handle('file:getAllPlayList', handleGetAllPlayList)
   ipcMain.handle('file:deletePlayList', handleDeletePlayList)
