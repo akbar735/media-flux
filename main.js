@@ -9,6 +9,7 @@ const { handleGetAllPlayList, handleDeletePlayList } = require('./ipchandler/get
 let win
 const createWindow = () => {
   win = new BrowserWindow({
+    title: 'Media Flux',
     width: 1000,
     height: 850,
     webPreferences: {
@@ -17,6 +18,14 @@ const createWindow = () => {
     },
     frame: process.platform === 'darwin' ? true : false,
     ...(process.platform === 'darwin' ? { titleBarStyle: 'hidden' } : {})
+  })
+
+  win.on('enter-full-screen', () => {
+    win.webContents.send('window:fullscreen-change', true)
+  })
+
+  win.on('leave-full-screen', () => {
+    win.webContents.send('window:fullscreen-change', false)
   })
 
   win.loadFile('build/index.html')
@@ -53,6 +62,9 @@ app.whenReady().then(async () => {
     if (win) {
       win.isMaximized() ? win.unmaximize() : win.maximize();
     }
+  })
+  ipcMain.handle('window:isFullScreen', () => {
+    return win ? win.isFullScreen() : false;
   })
   createWindow()
 })

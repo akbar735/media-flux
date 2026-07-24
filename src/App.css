@@ -6,8 +6,14 @@
     .app-content-height {
       height: calc(100vh - 150px);
     }
+    .mac-fullscreen-layout .app-content-height {
+      height: calc(100vh - 110px);
+    }
     .media-container-height{
       height: calc(100vh - 204px);
+    }
+    .mac-fullscreen-layout .media-container-height{
+      height: calc(100vh - 164px);
     }
     .media-tranparency{
       background-color: #00000082;

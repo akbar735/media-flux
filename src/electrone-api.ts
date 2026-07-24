@@ -7,6 +7,8 @@ export const windowObj = window as typeof window & {
         closeWindow: VoidFunction,
         minimizeWindow: VoidFunction,
         maximizeWindow: VoidFunction,
+        getIsFullScreen: () => Promise<boolean>,
+        onFullScreenChange: (callback: (isFullScreen: boolean) => void) => VoidFunction,
         getFolderPath: () => string,
         getAllPlayList: () => IPlayListDetail[],
         getAllFiles: (arg0: string) => IFileType[],
