@@ -1,5 +1,11 @@
 node_modules
-build
 data
 release
 .DS_Store
+
+# Ignore generated build files
+build/*
+
+# Keep Electron icons
+!build/icons/
+!build/icons/*
