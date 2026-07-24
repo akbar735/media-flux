@@ -10,5 +10,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   handleDeletePlayList: (playlistName) => ipcRenderer.invoke('file:deletePlayList', playlistName),
   closeWindow: () => ipcRenderer.invoke('close'),
   minimizeWindow: () => ipcRenderer.invoke('minimize'),
-  maximizeWindow: () => ipcRenderer.invoke('maximize')
+  maximizeWindow: () => ipcRenderer.invoke('maximize'),
+  platform: process.platform
 })

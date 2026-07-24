@@ -614,6 +614,10 @@ video {
   margin-left: 0.5rem;
 }
 
+.ml-20 {
+  margin-left: 5rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -727,6 +731,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-10 {
+  height: 2.5rem;
 }
 
 .w-11 {

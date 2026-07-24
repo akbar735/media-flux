@@ -15,7 +15,8 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
       hardwareAcceleration: true
     },
-    frame: false
+    frame: process.platform === 'darwin' ? true : false,
+    ...(process.platform === 'darwin' ? { titleBarStyle: 'hidden' } : {})
   })
 
   win.loadFile('build/index.html')
@@ -28,7 +29,6 @@ require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
     ignored: [
       /node_modules|[/\\]\./,
-      path.join(__dirname, 'main.js'),
       /([/\\]|^)data([/\\]|$)/
     ]
 })

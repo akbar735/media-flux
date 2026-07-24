@@ -11,6 +11,7 @@ export const windowObj = window as typeof window & {
         getAllPlayList: () => IPlayListDetail[],
         getAllFiles: (arg0: string) => IFileType[],
         handleCreateAlbum: (albumName: string, formattedFiles: { name: string, src: string }[]) => Promise<string>,
-        handleDeletePlayList: (playlistName: string) => Promise<string>
+        handleDeletePlayList: (playlistName: string) => Promise<string>,
+        platform: string
     }
 };
