@@ -3,7 +3,7 @@ import { MdFolderOpen } from "react-icons/md";
 import { v4 as uuidv4 } from 'uuid';
 import { IFileDetail, IFileType, MediaLocation, MediaMime, MediaType, PathKey } from "../../../../types";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { getFileType, getLoadedFile, getLocalStorageValue, getSerializableFileDetail, updateLocalStorage } from "../../../../helper";
+import { getFileType, getLoadedFile, getLocalStorageValue, getSerializableFileDetail, updateLocalStoragePaths } from "../../../../helper";
 import { addItemsToPlayList, initMediaState, togglePlayListLoop } from "../../../../slices/MediaSclice";
 import FilePickerButton from "../../../../widgets/button/FolderPickerButton";
 import AudioWrapper from "../AudioWrapper/AudioWrapper";
@@ -66,7 +66,7 @@ export default function MediaGallery(props: IMediaGallery){
 
     const onFolderSlected = useCallback((foldePath: string) => {
         if(foldePath) {
-            updateLocalStorage(props.pathKey, foldePath)
+            updateLocalStoragePaths(props.pathKey, foldePath)
             loadMediaFiles()
         }
     }, []);

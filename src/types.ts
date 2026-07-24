@@ -50,6 +50,12 @@ export enum PathKey{
     RECENTLY_PLAYED = 'recentlyPlayed'
 }
 
+export enum AppThemeMode{
+    LIGHT = 'light',
+    DARK = 'dark',
+    AUTO = 'auto'
+}
+
 export enum MediaMime{
     AUDIO_MIME = 'audio/*',
     VIDEO_MIME = 'video/*',

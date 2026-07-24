@@ -1,4 +1,6 @@
-import { ICurrentlyPlaying, IFileDetail, IFileType, PathKey } from "./types"
+import { AppThemeMode, ICurrentlyPlaying, IFileDetail, IFileType, PathKey } from "./types"
+
+export const APP_THEME_STORAGE_KEY = 'appThemeMode';
 
 export function getFileType (mime: string){
     return mime.split('/')[0]
@@ -40,6 +42,46 @@ export function updateLocalStorage(name: PathKey, value: string){
     }else{
         localStorage.setItem(name, value)
     }
+}
+
+export function updateLocalStoragePaths(name: PathKey, value: string){
+    if(!value) return;
+    const items = getLocalStorageValue(name);
+    const uniqueItems = Array.from(new Set([...items, value]));
+    localStorage.setItem(name, uniqueItems.join(';'));
+}
+
+export function removeLocalStoragePath(name: PathKey, value: string){
+    const items = getLocalStorageValue(name).filter(item => item !== value);
+    if(items.length > 0){
+        localStorage.setItem(name, items.join(';'));
+    }else{
+        localStorage.removeItem(name);
+    }
+}
+
+export function getStoredAppTheme(){
+    const storedTheme = localStorage.getItem(APP_THEME_STORAGE_KEY);
+    if(
+        storedTheme === AppThemeMode.LIGHT ||
+        storedTheme === AppThemeMode.DARK ||
+        storedTheme === AppThemeMode.AUTO
+    ){
+        return storedTheme;
+    }
+    return AppThemeMode.AUTO;
+}
+
+export function applyAppTheme(themeMode: AppThemeMode){
+    const shouldUseDarkTheme = themeMode === AppThemeMode.DARK ||
+        (themeMode === AppThemeMode.AUTO && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    document.documentElement.classList.toggle('dark', shouldUseDarkTheme);
+}
+
+export function setStoredAppTheme(themeMode: AppThemeMode){
+    localStorage.setItem(APP_THEME_STORAGE_KEY, themeMode);
+    applyAppTheme(themeMode);
 }
 
 export function updateRecentlyPlayed(name: PathKey, value: {time: number, fileDetail: ICurrentlyPlaying}){
@@ -86,5 +128,5 @@ export function getRecentlyPlayed(){
 }
 export function getLocalStorageValue(name: PathKey){
   const items = localStorage.getItem(name);
-  return items?.split(';') || []
+  return items?.split(';').filter(Boolean) || []
 }
