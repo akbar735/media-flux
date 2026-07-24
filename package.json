@@ -69,6 +69,7 @@
   "build": {
     "appId": "com.akbar.mediaflux",
     "productName": "Media Flux",
+    "publish": null,
     "directories": {
       "output": "release"
     },
