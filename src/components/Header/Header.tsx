@@ -35,7 +35,7 @@ export default function Header(props: IHeader) {
             {!isMac && (
                 <div className="flex items-center">
                     <IconButton
-                        onCLick={props.onBackClickHandler ? props.onBackClickHandler : () => navigate("..", { relative: "path" })}
+                        onClick={props.onBackClickHandler ? props.onBackClickHandler : () => navigate("..", { relative: "path" })}
                         variant={props.variant}
                     >
                         <ArrowLeftIcon className="h-5 w-5" />
@@ -46,16 +46,16 @@ export default function Header(props: IHeader) {
             <div className="flex items-center">
                 {!isMac && (
                     <>
-                        <IconButton onCLick={miniMizeWindow} variant={props.variant}>
+                        <IconButton onClick={miniMizeWindow} variant={props.variant}>
                             <MdMinimize className="h-5 w-5" />
                         </IconButton>
 
-                        <IconButton onCLick={maxiMizeWindow} variant={props.variant}>
+                        <IconButton onClick={maxiMizeWindow} variant={props.variant}>
                             <MdMaximize className="h-5 w-5" />
                         </IconButton>
 
                         <IconButton
-                            onCLick={closeWindow}
+                            onClick={closeWindow}
                             variant={props.variant ? props.variant : 'close'}
                         >
                             <XMarkIcon className="h-5 w-5" />

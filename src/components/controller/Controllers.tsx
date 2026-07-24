@@ -63,20 +63,20 @@ export default function Controllers(props: IControllers){
     }, [HandleOnKeyDown]);
 
     return <div className="flex">
-            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onCLick={props.rewindFiveSeconds} >
+            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onClick={props.rewindFiveSeconds} >
                 <MdReplay5 className="h-6 w-6" />
             </IconButton>
-            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onCLick={props.playPrevious}>
+            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onClick={props.playPrevious}>
                 <MdNavigateBefore className="h-6 w-6" />
             </IconButton>
             <IconButton variant={props.buttonVariant}>
                 {!isPlaying ? <MdPlayCircleOutline onClick={playMedia} className="h-11 w-11 block" />:
                     <MdPauseCircleOutline onClick={pauseMedia} className="h-11 w-11 block" />}
             </IconButton>
-            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onCLick={props.playNext}>
+            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onClick={props.playNext}>
                 <MdNavigateNext className="h-6 w-6" />
             </IconButton>
-            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onCLick={props.forwardFiveSeconds}>
+            <IconButton style = {{alignSelf: 'center'}} variant={props.buttonVariant} onClick={props.forwardFiveSeconds}>
                 <MdForward5 className="h-6 w-6" />
             </IconButton>
     </div>

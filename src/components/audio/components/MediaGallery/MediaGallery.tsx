@@ -84,7 +84,7 @@ export default function MediaGallery(props: IMediaGallery){
     return (
         <div className="app-content-height overflow-auto w-full p-2">
             <div className="flex justify-end mb-2"> 
-                <IconButton style = {{alignSelf: 'center', marginRight: '10px'}} onCLick={handleTogglePlayListLoop} >
+                <IconButton style = {{alignSelf: 'center', marginRight: '10px'}} onClick={handleTogglePlayListLoop} >
                     {playListLoop ? <TbRepeat className="h-6 w-6" />: <TbRepeatOff className="h-6 w-6"/>}
                 </IconButton>
                 <FilePickerButton 

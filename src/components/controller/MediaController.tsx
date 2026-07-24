@@ -416,11 +416,11 @@ export default function MediaController(props: IMediaController){
                     />
                 </div>}
                 <div className="w-full flex justify-between items-center">   
-                    <IconButton  style = {{alignSelf: 'center', marginLeft: '30px'}} onCLick={handleToggleLoop} >
+                    <IconButton  style = {{alignSelf: 'center', marginLeft: '30px'}} onClick={handleToggleLoop} >
                         {loop ? <TbRepeat className="h-6 w-6" />: <TbRepeatOff className="h-6 w-6"/>}
                     </IconButton>
                     {!isPlaybackOpen && <div className="flex justify-between items-center">
-                        <IconButton  style = {{alignSelf: 'center', marginRight: '10px'}} onCLick={toggleVolume} >
+                        <IconButton  style = {{alignSelf: 'center', marginRight: '10px'}} onClick={toggleVolume} >
                             <div>
                                 {(volume?? 0) === 0 ? <TbVolume3 className="h-6 w-6" />: ''}
                                 {(volume?? 0) > 0 && (volume?? 0) <= 0.5 ? <TbVolume2 className="h-6 w-6" />: ''}

@@ -170,13 +170,13 @@ export default function PlayLists(){
 
                 {/* Right side: Loop, Delete, Open Media, Select Playlist */}
                 <div className="flex items-center">
-                    <IconButton style = {{alignSelf: 'center', marginRight: '10px'}} onCLick={handleTogglePlayListLoop} >
+                    <IconButton style = {{alignSelf: 'center', marginRight: '10px'}} onClick={handleTogglePlayListLoop} >
                         {playListLoop ? <TbRepeat className="h-6 w-6" />: <TbRepeatOff className="h-6 w-6"/>}
                     </IconButton>
                     {selectedPlayList && (
                         <IconButton 
                             style={{ alignSelf: 'center', marginRight: '10px' }} 
-                            onCLick={handleDeletePlaylist}
+                            onClick={handleDeletePlaylist}
                             variant="close"
                         >
                             <MdDelete className="h-6 w-6" />

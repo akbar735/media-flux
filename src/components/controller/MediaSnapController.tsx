@@ -113,11 +113,11 @@ export default function MediaSnapController(props: IMediaSnapController){
                     />
                 </div>
                 <div className="w-full flex justify-between items-center">  
-                    <IconButton style = {{alignSelf: 'center', marginLeft: '30px'}} variant="snap"  onCLick={handleToggleLoop} >
+                    <IconButton style = {{alignSelf: 'center', marginLeft: '30px'}} variant="snap"  onClick={handleToggleLoop} >
                         {loop ? <TbRepeat className="h-6 w-6" />: <TbRepeatOff className="h-6 w-6"/>}
                     </IconButton>
                     <div className="flex justify-between items-center">
-                        <IconButton  style = {{alignSelf: 'center', marginRight: '10px'}} variant="snap" onCLick={props.toggleVolume} >
+                        <IconButton  style = {{alignSelf: 'center', marginRight: '10px'}} variant="snap" onClick={props.toggleVolume} >
                             <div>
                                 {(props.volume?? 0) === 0 ? <TbVolume3 className="h-6 w-6" />: ''}
                                 {(props.volume?? 0) > 0 && (props.volume?? 0) <= 0.5 ? <TbVolume2 className="h-6 w-6" />: ''}
