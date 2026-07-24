@@ -30,6 +30,10 @@ export default function Controllers(props: IControllers){
     }
     
     const HandleOnKeyDown = (event: KeyboardEvent) => {
+        const target = event.target as HTMLElement;
+        if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+            return;
+        }
         if(event.ctrlKey){
            if(event.code === KEYCODE.ArrowLeft){
                 props.playPrevious();

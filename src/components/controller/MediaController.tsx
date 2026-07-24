@@ -305,6 +305,10 @@ export default function MediaController(props: IMediaController){
 
     
     const HandleOnKeyDown = (event: KeyboardEvent) => {
+            const target = event.target as HTMLElement;
+            if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+                return;
+            }
            
             if(event.code === KEYCODE.ArrowDown && volume){
                 const newValue = (volume - VOLUME_STEPS) > 0 ? (volume - VOLUME_STEPS) : 0

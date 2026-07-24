@@ -25,7 +25,12 @@ const createWindow = () => {
 }
 
 require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+    ignored: [
+      /node_modules|[/\\]\./,
+      path.join(__dirname, 'main.js'),
+      /([/\\]|^)data([/\\]|$)/
+    ]
 })
 app.whenReady().then(async () => {
   ipcMain.handle('file:getAllPlayList', handleGetAllPlayList)

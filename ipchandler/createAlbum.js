@@ -6,9 +6,9 @@ const fs = require('fs');
 
 const handleCreateAlbum = async (event, albumName, formattedFiles) => {
    
-    const targeFolder = `data/play-list/${albumName}`
+    const targeFolder = path.join(__dirname, '..', 'data', 'play-list', albumName);
     if(!fs.existsSync(targeFolder)){
-        await fs.promises.mkdir(targeFolder);
+        await fs.promises.mkdir(targeFolder, { recursive: true });
     }
     
     formattedFiles.forEach(async (file) => {

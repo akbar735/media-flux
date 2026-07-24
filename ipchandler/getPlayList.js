@@ -5,6 +5,10 @@ const fs = require('fs')
 const handleGetAllPlayList =  async () => {
     const containerPath = path.join(__dirname,'..','data', 'play-list');
 
+    if (!fs.existsSync(containerPath)) {
+        await fs.promises.mkdir(containerPath, { recursive: true });
+    }
+
     const mediaFiles = await fs.promises.readdir(containerPath);
     const playLists = []
     for(const index in mediaFiles){
