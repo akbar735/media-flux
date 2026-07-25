@@ -6,12 +6,22 @@ const { hadleGetFolderPath } = require('./ipchandler/getFolderPath')
 const { handleCreateAlbum } = require('./ipchandler/createAlbum')
 const { handleGetAllPlayList, handleDeletePlayList } = require('./ipchandler/getPlayList')
 
+if (process.platform === 'win32') {
+  app.setAppUserModelId('com.akbar.mediaflux')
+}
+
 let win
+const appIcon = path.join(__dirname, 'build', 'icons', '512x512.png')
 const createWindow = () => {
+  const windowIcon = process.platform === 'win32'
+    ? path.join(__dirname, 'build', 'icons', 'icon.ico')
+    : appIcon
+
   win = new BrowserWindow({
     title: 'Media Flux',
     width: 1000,
     height: 850,
+    icon: windowIcon,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       hardwareAcceleration: true
@@ -45,6 +55,10 @@ if (!app.isPackaged) {
 }
 
 app.whenReady().then(async () => {
+  if (process.platform === 'darwin' && app.dock) {
+    app.dock.setIcon(appIcon)
+  }
+
   ipcMain.handle('file:getAllPlayList', handleGetAllPlayList)
   ipcMain.handle('file:deletePlayList', handleDeletePlayList)
   ipcMain.handle('file:getFiles', getFiles)

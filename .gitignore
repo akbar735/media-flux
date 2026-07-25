@@ -2,10 +2,12 @@ node_modules
 data
 release
 .DS_Store
-
+MediaFlux.iconset
 # Ignore generated build files
 build/*
 
 # Keep Electron icons
+!build/icon.icns
+!build/icon.ico
 !build/icons/
 !build/icons/*
